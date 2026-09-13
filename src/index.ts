@@ -5,6 +5,7 @@ import cors from '@koa/cors';
 import {
   CandidatesRouter,
   JobRouter,
+  LogRouter,
   UsersRouter,
   WebhookRouter,
 } from './routes';
@@ -35,6 +36,7 @@ app.use(async (ctx: Context, next) => {
 app.use(UsersRouter.routes());
 app.use(CandidatesRouter.routes());
 app.use(JobRouter.routes());
+app.use(LogRouter.routes());
 app.use(WebhookRouter.routes());
 
 const PORT = process.env.PORT || 4000;

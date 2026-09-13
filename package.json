@@ -6,7 +6,8 @@
     "start:webhook": "webhook-forwoarding.js",
     "start": "node ./dist/index.js",
     "build": "tsc",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "prisma:seed": "prisma db seed"
   },
   "dependencies": {
     "@koa/cors": "^5.0.0",
@@ -45,6 +46,9 @@
     "ts-node-dev": "^2.0.0",
     "tsc": "^2.0.4",
     "typescript": "^5.7.3"
+  },
+  "prisma": {
+    "seed": "ts-node --transpile-only prisma/seed.ts"
   },
   "husky": {
     "hooks": {
