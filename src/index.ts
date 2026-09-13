@@ -2,7 +2,12 @@ import Koa, { Context } from 'koa';
 import bodyParser from 'koa-bodyparser';
 import cors from '@koa/cors';
 
-import { UsersRouter } from './routes';
+import {
+  CandidatesRouter,
+  JobRouter,
+  UsersRouter,
+  WebhookRouter,
+} from './routes';
 
 const app = new Koa();
 
@@ -28,6 +33,9 @@ app.use(async (ctx: Context, next) => {
 // app.use(ErrorHandler.catchError);
 
 app.use(UsersRouter.routes());
+app.use(CandidatesRouter.routes());
+app.use(JobRouter.routes());
+app.use(WebhookRouter.routes());
 
 const PORT = process.env.PORT || 4000;
 

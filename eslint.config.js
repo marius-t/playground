@@ -44,7 +44,7 @@ module.exports = [
       eqeqeq: 'error',
       '@typescript-eslint/no-non-null-assertion': 'off',
       'import/no-cycle': 'error',
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': 'warn',
 
       'simple-import-sort/imports': [

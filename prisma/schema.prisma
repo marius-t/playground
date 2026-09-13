@@ -1,0 +1,60 @@
+// Prisma schema for Talsource.
+// Datasource: MariaDB (MySQL protocol) running in docker-compose on localhost:8888.
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum CandidateStatus {
+  NEW
+  PENDING_INTERNAL_REVIEW
+  REJECTED_INTERNAL
+  PENDING_EMPLOYER_REVIEW
+  ACCEPTED_FOR_INTERVIEW
+  REJECTED_FOR_INTERVIEW
+  OFFER_MADE
+  OFFER_DECLINED
+  ACCEPTED_EMPLOYER
+  REJECTED_EMPLOYER
+  CANDIDATE_WITHDREW
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String
+  created  DateTime @default(now())
+  modified DateTime @updatedAt
+
+  jobs Job[]
+}
+
+model Job {
+  id          Int      @id @default(autoincrement())
+  user_id     Int
+  title       String
+  description String
+  created     DateTime @default(now())
+  modified    DateTime @updatedAt
+
+  user       User        @relation(fields: [user_id], references: [id])
+  candidates Candidate[]
+}
+
+model Candidate {
+  id       Int             @id @default(autoincrement())
+  job_id   Int?
+  name     String
+  email    String
+  status   CandidateStatus @default(NEW)
+  created  DateTime        @default(now())
+  modified DateTime        @updatedAt
+
+  job Job? @relation(fields: [job_id], references: [id])
+}
