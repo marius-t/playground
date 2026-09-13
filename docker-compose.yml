@@ -1,0 +1,17 @@
+services:
+  # MySQL Database
+  playground-database:
+    image: mariadb
+    container_name: playground-database
+    command: --max_allowed_packet=32505856
+    ports:
+      - '8888:3306'
+    networks:
+      - default
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=playground
+    volumes:
+      - ./docker-config/db/:/var/lib/mysql
