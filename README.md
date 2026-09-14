@@ -25,6 +25,21 @@ How it works:
   - `npm install pm2 --global`
   - run `pm2` inside the current folder - This will make sure the process will be started in case of machine restart - 
   - `pm2 save all` - is needed to save the processes to plist
-7. This project usses seem.io for webhook forwarding for local development, to start the script for webhook FW run `yarn start:webhook`
-8. 
+7. Seed the database with sample data (users, jobs and candidates) — `yarn prisma:seed`
+8. This project usses seem.io for webhook forwarding for local development, to start the script for webhook FW run `yarn start:webhook`
+
+## Database (local dev)
+
+MariaDB runs in Docker (`docker compose up -d`, container `playground-database`) and is exposed on
+host port **8888** (database `playground`). The connection string is read from `.env` (`DATABASE_URL`).
+
+| Command | What it does |
+|---|---|
+| `yarn prisma:seed` | Applies pending migrations, then resets and seeds sample data |
+| `yarn prisma:migrate` | Applies pending migrations only |
+| `yarn prisma studio` | Browse the data in the browser |
+
+`yarn prisma:seed` is safe to run at any point, including against a brand-new database: it applies
+the migrations first, then resets `Log`, `Candidate`, `Job` and `User` and recreates 10 users,
+10 jobs and 12 candidates. 
 

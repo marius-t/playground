@@ -79,6 +79,7 @@ const CANDIDATE_STATUSES = Object.values(CandidateStatus);
 
 async function main(): Promise<void> {
   // Reset (children before parents) so re-running is deterministic.
+  await prisma.log.deleteMany();
   await prisma.candidate.deleteMany();
   await prisma.job.deleteMany();
   await prisma.user.deleteMany();

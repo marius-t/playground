@@ -5521,6 +5521,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.70.0"
     axios: "npm:^1.20.0"
     core-js: "npm:^3.50.0"
+    dotenv: "npm:^16.6.1"
     eslint: "npm:^10.10.0"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-import: "npm:^2.32.0"
